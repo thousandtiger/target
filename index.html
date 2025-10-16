@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGL: Ask My Anything</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff007f, #a033ff, #6a00ff);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      color: white;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      color: #333;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff007f, #a033ff, #6a00ff);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      width: 100%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .thank-you {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .footer {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">NGL: Ask My Anything</div>
+
+  <div class="card">
+    <!-- Step 1 -->
+    <div id="step1">
+      <h2>Enter Your Details</h2>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <input type="text" id="instagram" placeholder="Enter your Instagram handle (optional)">
+      <button onclick="goToStep2()">Next</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" class="hidden">
+      <h2>Send an Anonymous Message</h2>
+      <form id="messageForm" action="https://getform.io/f/ajjrlqya" method="POST">
+        <input type="hidden" name="name" id="hiddenName">
+        <input type="hidden" name="instagram" id="hiddenInstagram">
+        <textarea name="message" rows="4" placeholder="Type your message here..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <!-- Thank You Message -->
+    <div id="thankYou" class="hidden">
+      <p class="thank-you">Thank you! Your message has been sent.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 NGL: Ask My Anything — For Educational Use Only
+  </div>
+
+  <script>
+    function goToStep2() {
+      const name = document.getElementById('name').value.trim();
+      const insta = document.getElementById('instagram').value.trim();
+
+      if (name === "") {
+        alert("Please enter your name first.");
+        return;
+      }
+
+      document.getElementById('hiddenName').value = name;
+      document.getElementById('hiddenInstagram').value = insta;
+
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+      document.querySelector('#step2 textarea').focus();
+    }
+
+    // Show thank you message after submission
+    document.getElementById('messageForm').addEventListener('submit', function(e) {
+      const message = this.message.value.trim();
+      if (message === "") {
+        e.preventDefault();
+        alert("Please type a message before sending.");
+      } else {
+        e.preventDefault(); // prevent page reload
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('thankYou').classList.remove('hidden');
+
+        // Submit to Getform using fetch
+        fetch(this.action, {
+          method: 'POST',
+          body: new FormData(this)
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
